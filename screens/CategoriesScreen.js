@@ -8,25 +8,20 @@ import {
 } from "react-native";
 
 import { CATEGORIES } from "../data/dummy-data";
-import Colors from "../constants/Colors";
+import CategoryGridTitle from "../components/CategoryGridTitle";
 
 const CategoriesScreen = props => {
   const renderGridItem = itemData => (
-    <TouchableOpacity
-      style={styles.item}
-      onPress={() =>
+    <CategoryGridTitle
+      onSelect={() =>
         props.navigation.navigate({
           routeName: "CategoryMeals",
           params: { categoryId: itemData.item.id }
         })
       }
-    >
-      <View>
-        <Text style={{ color: itemData.item.color }}>
-          {itemData.item.title}
-        </Text>
-      </View>
-    </TouchableOpacity>
+      title={itemData.item.title}
+      color={itemData.item.color}
+    />
   );
 
   return (
