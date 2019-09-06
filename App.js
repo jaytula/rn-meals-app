@@ -1,10 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
+import * as Font from "expo-font";
+
 import { StyleSheet, Text, View } from "react-native";
+import { AppLoading } from "expo";
+
+const fetchFonts = () => {
+  return Font.loadAsync({
+    "open-sans": require("./assets/fonts/OpenSans-Regular.ttf"),
+    "open-sans-bold": require("./assets/fonts/OpenSans-Bold.ttf")
+  });
+};
 
 export default function App() {
+  const [appReady, setAppReady] = useState(false);
+
+  if (!appReady) {
+    return (
+      <AppLoading
+        startAsync={fetchFonts}
+        onFinish={() => setAppReady(true)}
+        onError={console.warn}
+      />
+    );
+  }
   return (
     <View>
-      <Text>Open up App.js to start working on your app!</Text>
+      <Text style={styles.text}>
+        Open up App.js to start working on your app!
+      </Text>
     </View>
   );
 }
@@ -15,5 +38,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center"
+  },
+  text: {
+    fontFamily: "open-sans-bold"
   }
 });
