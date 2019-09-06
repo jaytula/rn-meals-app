@@ -4,6 +4,8 @@ import * as Font from "expo-font";
 import { StyleSheet, Text, View } from "react-native";
 import { AppLoading } from "expo";
 
+import MealsNavigator from "./navigation/MealsNavigator";
+
 const fetchFonts = () => {
   return Font.loadAsync({
     "open-sans": require("./assets/fonts/OpenSans-Regular.ttf"),
@@ -23,13 +25,7 @@ export default function App() {
       />
     );
   }
-  return (
-    <View>
-      <Text style={styles.text}>
-        Open up App.js to start working on your app!
-      </Text>
-    </View>
-  );
+  return <MealsNavigator />;
 }
 
 const styles = StyleSheet.create({
