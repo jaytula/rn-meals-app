@@ -8,7 +8,7 @@ import {
   TouchableNativeFeedback
 } from "react-native";
 
-const CategoryGridTitle = ({ title, color, onSelect }) => {
+const CategoryGridTile = ({ title, color, onSelect }) => {
   let Touchable = TouchableOpacity;
   if (Platform.OS === "android" && Platform.Version >= 21) {
     Touchable = TouchableNativeFeedback;
@@ -27,26 +27,30 @@ const CategoryGridTitle = ({ title, color, onSelect }) => {
 };
 
 const styles = StyleSheet.create({
+  gridItem: {
+    flex: 1,
+    height: 150,
+    overflow:
+      Platform.OS === "android" && Platform.Version >= 21
+        ? "hidden"
+        : "visible",
+    borderWidth: 1,
+    borderColor: "black",
+    margin: 15,
+    borderRadius: 10,
+    elevation: 3
+  },
   container: {
     flex: 1,
     borderRadius: 10,
     shadowOpacity: 0.26,
     shadowOffset: { width: 0, height: 2 },
     shadowRadius: 10,
-    elevation: 3,
     padding: 10,
     justifyContent: "flex-end",
     alignItems: "flex-end"
   },
-  gridItem: {
-    flex: 1,
-    height: 150,
-    overflow: "hidden",
-    borderWidth: 1,
-    borderColor: "black",
-    margin: 15,
-    borderRadius: 10
-  },
+
   title: {
     fontFamily: "open-sans-bold",
     fontSize: 22,
@@ -54,4 +58,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default CategoryGridTitle;
+export default CategoryGridTile;

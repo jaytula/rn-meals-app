@@ -8,11 +8,11 @@ import {
 } from "react-native";
 
 import { CATEGORIES } from "../data/dummy-data";
-import CategoryGridTitle from "../components/CategoryGridTitle";
+import CategoryGridTile from "../components/CategoryGridTile";
 
 const CategoriesScreen = props => {
   const renderGridItem = itemData => (
-    <CategoryGridTitle
+    <CategoryGridTile
       onSelect={() =>
         props.navigation.navigate({
           routeName: "CategoryMeals",
