@@ -1,27 +1,50 @@
 import React from "react";
-import { View, Text, StyleSheet, Button } from "react-native";
+import {
+  ScrollView,
+  View,
+  Image,
+  Text,
+  StyleSheet,
+  Button
+} from "react-native";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 
 import { MEALS } from "../data/dummy-data";
 
 import HeaderButton from "../components/HeaderButton";
+import DefaultText from "../components/DefaultText";
+
+const ListItem = props => {
+  return (
+    <View style={styles.listItem}>
+      <DefaultText>{props.children}</DefaultText>
+    </View>
+  );
+};
 
 const MealsDetailScreen = props => {
   const mealId = props.navigation.getParam("mealId");
   const selectedMeal = MEALS.find(meal => meal.id === mealId);
 
   return (
-    <View style={styles.screen}>
-      <View>
-        <Text>{selectedMeal.duration}m</Text>
+    <ScrollView>
+      <Image style={styles.image} source={{ uri: selectedMeal.imageUrl }} />
+      <View style={{ ...styles.mealRow, ...styles.details }}>
+        <DefaultText>{selectedMeal.duration}m</DefaultText>
+        <DefaultText>{selectedMeal.complexity.toUpperCase()}</DefaultText>
+        <DefaultText>{selectedMeal.affordability.toUpperCase()}</DefaultText>
       </View>
-      <View>
-        <Text>{selectedMeal.affordability}</Text>
+      <DefaultText style={styles.title}>Ingredients</DefaultText>
+      <View style={styles.listView}>
+        {selectedMeal.steps.map(ingredient => (
+          <ListItem key={ingredient}>{ingredient}</ListItem>
+        ))}
       </View>
-      <View>
-        <Text>{selectedMeal.complexity}</Text>
-      </View>
-    </View>
+      <DefaultText style={styles.title}>Steps</DefaultText>
+      {selectedMeal.steps.map(step => (
+        <ListItem key={step}>{step}</ListItem>
+      ))}
+    </ScrollView>
   );
 };
 
@@ -44,10 +67,29 @@ MealsDetailScreen.navigationOptions = navData => {
   };
 };
 const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center"
+  image: {
+    width: "100%",
+    height: 200
+  },
+  mealRow: {
+    flexDirection: "row"
+  },
+  details: {
+    paddingHorizontal: 15,
+    flexDirection: "row",
+    justifyContent: "space-around"
+  },
+  title: {
+    fontFamily: "open-sans-bold",
+    fontSize: 22,
+    textAlign: "center"
+  },
+  listItem: {
+    marginVertical: 10,
+    marginHorizontal: 20,
+    borderColor: "#ccc",
+    borderWidth: 1,
+    padding: 10
   }
 });
 export default MealsDetailScreen;
