@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import * as Font from "expo-font";
 
-import { StyleSheet, Text, View } from "react-native";
 import { AppLoading } from "expo";
 import { useScreens } from "react-native-screens";
 
@@ -30,15 +29,3 @@ export default function App() {
   }
   return <MealsNavigator />;
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center"
-  },
-  text: {
-    fontFamily: "open-sans-bold"
-  }
-});
