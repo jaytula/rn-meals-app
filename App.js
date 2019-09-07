@@ -3,8 +3,14 @@ import * as Font from "expo-font";
 
 import { AppLoading } from "expo";
 import { useScreens } from "react-native-screens";
+import { createStore, combineReducers } from "redux";
+import { Provider } from "react-redux";
+
+import mealsReducer from "./store/reducers/meals";
 
 useScreens();
+const rootReducer = combineReducers({ meals: mealsReducer });
+const store = createStore(rootReducer);
 
 import MealsNavigator from "./navigation/MealsNavigator";
 
@@ -27,5 +33,9 @@ export default function App() {
       />
     );
   }
-  return <MealsNavigator />;
+  return (
+    <Provider store={store}>
+      <MealsNavigator />
+    </Provider>
+  );
 }
