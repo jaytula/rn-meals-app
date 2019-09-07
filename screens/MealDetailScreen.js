@@ -25,8 +25,7 @@ const MealsDetailScreen = props => {
   );
 };
 
-MealsDetailScreen.navigationOptions = navigationData => {
-  const mealId = navigationData.navigation.getParam("mealId");
+MealsDetailScreen.navigationOptions = navData => {
   const selectedMeal = MEALS.find(meal => meal.id === mealId);
   return {
     headerTitle: selectedMeal.title,
