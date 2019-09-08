@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { ScrollView, View, Image, StyleSheet } from "react-native";
 import { useSelector } from "react-redux";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
@@ -42,10 +42,10 @@ const MealsDetailScreen = props => {
 };
 
 MealsDetailScreen.navigationOptions = navData => {
-  const mealId = navData.navigation.getParam("mealId");
-  const selectedMeal = MEALS.find(meal => meal.id === mealId);
+  //const mealId = navData.navigation.getParam("mealId");
+  const mealTitle = navData.navigation.getParam("mealTitle");
   return {
-    headerTitle: selectedMeal.title,
+    headerTitle: mealTitle, //selectedMeal.title,
     headerRight: (
       <HeaderButtons HeaderButtonComponent={HeaderButton}>
         <Item
