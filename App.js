@@ -6,11 +6,13 @@ import { useScreens } from "react-native-screens";
 import { createStore, combineReducers } from "redux";
 import { Provider } from "react-redux";
 
+import { composeWithDevTools } from "redux-devtools-extension";
+
 import mealsReducer from "./store/reducers/meals";
 
 useScreens();
 const rootReducer = combineReducers({ meals: mealsReducer });
-const store = createStore(rootReducer);
+const store = createStore(rootReducer, composeWithDevTools());
 
 import MealsNavigator from "./navigation/MealsNavigator";
 
