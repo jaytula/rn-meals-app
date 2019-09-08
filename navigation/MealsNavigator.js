@@ -22,7 +22,7 @@ const defaultStackOptions = {
   },
   headerTintColor: Platform.OS === "android" ? "white" : Colors.primaryColor,
   headerTitle: "A Screen",
-  headerBackTitle: {
+  headerBackTitleStyle: {
     fontFamily: "open-sans"
   },
   headerTitleStyle: {
